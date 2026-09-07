@@ -38,6 +38,7 @@ function loadApi(): Promise<void> {
 export function useLofiPlayer(): LofiPlayer {
   const playerRef = useRef<YT.Player | null>(null)
   const indexRef = useRef(0)
+  const hasStartedRef = useRef(false)
   const [ready, setReady] = useState(false)
   const [index, setIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
@@ -67,7 +68,8 @@ export function useLofiPlayer(): LofiPlayer {
         height: 200,
         videoId: TRACKS[0].videoId,
         playerVars: {
-          autoplay: 0,
+          autoplay: 1,
+          mute: 0,
           controls: 0,
           disablekb: 1,
           fs: 0,
@@ -80,13 +82,22 @@ export function useLofiPlayer(): LofiPlayer {
           onReady: (event) => {
             if (destroyed) return
             playerRef.current = event.target
+            try {
+              event.target.getIframe().setAttribute('allow', 'autoplay; encrypted-media')
+            } catch {
+              /* iframe may not be ready */
+            }
             setReady(true)
             setDuration(event.target.getDuration() || 0)
+            event.target.unMute()
+            event.target.setVolume(100)
+            event.target.playVideo()
           },
           onStateChange: (event) => {
             if (destroyed) return
             const { PlayerState } = window.YT
             if (event.data === PlayerState.PLAYING) {
+              hasStartedRef.current = true
               setPlaying(true)
               setDuration(event.target.getDuration() || 0)
             } else if (event.data === PlayerState.PAUSED) {
@@ -117,6 +128,33 @@ export function useLofiPlayer(): LofiPlayer {
       host.remove()
     }
   }, [])
+
+  useEffect(() => {
+    if (!ready || hasStartedRef.current) return
+
+    const start = () => {
+      if (hasStartedRef.current) return
+      const p = playerRef.current
+      if (!p) return
+      p.unMute()
+      p.setVolume(100)
+      p.playVideo()
+    }
+
+    start()
+    const id = window.setTimeout(start, 400)
+    const onGesture = () => start()
+    window.addEventListener('pointerdown', onGesture, true)
+    window.addEventListener('keydown', onGesture, true)
+    window.addEventListener('touchstart', onGesture, true)
+
+    return () => {
+      window.clearTimeout(id)
+      window.removeEventListener('pointerdown', onGesture, true)
+      window.removeEventListener('keydown', onGesture, true)
+      window.removeEventListener('touchstart', onGesture, true)
+    }
+  }, [ready, playing])
 
   useEffect(() => {
     if (!playing) return

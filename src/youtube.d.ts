@@ -17,6 +17,10 @@ declare global {
       getCurrentTime(): number
       getDuration(): number
       seekTo(seconds: number, allowSeekAhead: boolean): void
+      mute(): void
+      unMute(): void
+      setVolume(volume: number): void
+      getIframe(): HTMLIFrameElement
       destroy(): void
     }
 
