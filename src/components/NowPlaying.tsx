@@ -36,7 +36,7 @@ export function NowPlaying({
   }
 
   return (
-    <div className="animate-fade-up delay-5 absolute right-4 bottom-4 z-20 flex w-full max-w-[270px] flex-col gap-2 sm:right-6 sm:bottom-6 sm:w-72 sm:max-w-none md:right-10 md:bottom-8">
+    <div className="animate-fade-up delay-5 absolute right-4 bottom-4 z-40 flex w-full max-w-[270px] flex-col gap-2 sm:right-6 sm:bottom-6 sm:w-72 sm:max-w-none md:right-10 md:bottom-8">
       <div className="liquid-glass flex items-center gap-3 rounded-2xl p-2.5 pr-4">
         <button
           type="button"

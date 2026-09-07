@@ -1,8 +1,9 @@
 type HeroProps = {
+  onBrowse: () => void
   onSurprise: () => void
 }
 
-export function Hero({ onSurprise }: HeroProps) {
+export function Hero({ onBrowse, onSurprise }: HeroProps) {
   return (
     <div className="relative z-10 flex h-full flex-col items-center px-4 pt-20 text-center sm:px-6 sm:pt-28 md:pt-32">
       <div
@@ -26,14 +27,10 @@ export function Hero({ onSurprise }: HeroProps) {
       <div className="animate-fade-up delay-4 mt-8 flex w-full max-w-md flex-col items-center justify-center gap-3 sm:flex-row">
         <button
           type="button"
-          disabled
-          aria-disabled="true"
-          className="inline-flex cursor-default items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm text-gray-900"
+          onClick={onBrowse}
+          className="rounded-xl bg-white px-7 py-2.5 text-sm text-gray-900 transition-transform duration-200 hover:scale-105 active:scale-95"
         >
           Browse Library
-          <span className="rounded-md bg-black/8 px-1.5 py-0.5 text-[10px] tracking-wide text-gray-500">
-            Coming soon
-          </span>
         </button>
         <button
           type="button"

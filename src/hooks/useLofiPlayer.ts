@@ -4,17 +4,32 @@ import { TRACKS, type Track } from '../tracks'
 export type LofiPlayer = {
   ready: boolean
   track: Track
+  index: number
   playing: boolean
   liked: boolean
+  likedIds: string[]
   current: number
   duration: number
   playPause: () => void
   play: () => void
+  playAt: (index: number) => void
   prev: () => void
   next: () => void
   surprise: () => void
   seek: (ratio: number) => void
   toggleLike: () => void
+}
+
+const LIKED_KEY = 'sandbgm.liked'
+
+function readLikedIds(): string[] {
+  try {
+    const raw = localStorage.getItem(LIKED_KEY)
+    const parsed: unknown = raw ? JSON.parse(raw) : []
+    return Array.isArray(parsed) ? parsed.filter((id) => typeof id === 'string') : []
+  } catch {
+    return []
+  }
 }
 
 function loadApi(): Promise<void> {
@@ -42,7 +57,7 @@ export function useLofiPlayer(): LofiPlayer {
   const [ready, setReady] = useState(false)
   const [index, setIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const [liked, setLiked] = useState(false)
+  const [likedIds, setLikedIds] = useState<string[]>(readLikedIds)
   const [current, setCurrent] = useState(0)
   const [duration, setDuration] = useState(0)
 
@@ -106,7 +121,6 @@ export function useLofiPlayer(): LofiPlayer {
               const next = (indexRef.current + 1) % TRACKS.length
               indexRef.current = next
               setIndex(next)
-              setLiked(false)
               setCurrent(0)
               event.target.loadVideoById(TRACKS[next].videoId)
             }
@@ -184,9 +198,19 @@ export function useLofiPlayer(): LofiPlayer {
     indexRef.current = next
     setIndex(next)
     setCurrent(0)
-    setLiked(false)
     playerRef.current?.loadVideoById(TRACKS[next].videoId)
   }, [])
+
+  const playAt = useCallback(
+    (i: number) => {
+      if (i === indexRef.current) {
+        playerRef.current?.playVideo()
+        return
+      }
+      loadIndex(i)
+    },
+    [loadIndex],
+  )
 
   const prev = useCallback(() => {
     const p = playerRef.current
@@ -221,17 +245,34 @@ export function useLofiPlayer(): LofiPlayer {
     setCurrent(t)
   }, [])
 
-  const toggleLike = useCallback(() => setLiked((value) => !value), [])
+  const toggleLike = useCallback(() => {
+    const id = TRACKS[indexRef.current]?.videoId
+    if (!id) return
+    setLikedIds((prev) => {
+      const next = prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      try {
+        localStorage.setItem(LIKED_KEY, JSON.stringify(next))
+      } catch {
+        /* private mode */
+      }
+      return next
+    })
+  }, [])
+
+  const track = TRACKS[index]!
 
   return {
     ready,
-    track: TRACKS[index]!,
+    track,
+    index,
     playing,
-    liked,
+    liked: likedIds.includes(track.videoId),
+    likedIds,
     current,
     duration,
     playPause,
     play,
+    playAt,
     prev,
     next,
     surprise,

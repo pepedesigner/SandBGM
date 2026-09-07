@@ -16,7 +16,7 @@ A one-page listening space built around official [Lofi Girl](https://www.youtube
 - Official Lofi Girl study sessions and radios from YouTube
 - Play, pause, previous / next, and a seekable progress bar
 - **Surprise me** — jump to a random mix
-- **Browse Library** — catalog view (coming soon)
+- **Browse Library** — pick any mix from the catalog
 - Newsreader serif type and liquid-glass buttons
 
 ## Stack
