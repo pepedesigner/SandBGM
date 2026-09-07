@@ -34,7 +34,7 @@ export function Library({
     <div className="absolute inset-0 z-30 flex items-center justify-center px-4 pb-36 pt-20 sm:px-6">
       <button
         type="button"
-        className="absolute inset-0 bg-black/35"
+        className="absolute inset-0 bg-black/55"
         aria-label="Close library"
         onClick={onClose}
       />
@@ -43,7 +43,7 @@ export function Library({
         role="dialog"
         aria-modal="true"
         aria-labelledby="library-title"
-        className="animate-fade-up liquid-glass relative flex max-h-[min(70vh,32rem)] w-full max-w-lg flex-col rounded-3xl"
+        className="animate-fade-up relative flex max-h-[min(70vh,32rem)] w-full max-w-lg flex-col rounded-3xl border border-white/10 bg-black/60 shadow-2xl backdrop-blur-xl"
       >
         <div className="flex items-center justify-between gap-4 px-5 py-4">
           <div className="text-left">
