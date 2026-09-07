@@ -89,8 +89,22 @@ button {
   animation-delay: 0.75s;
 }
 
+.ui-chrome {
+  opacity: 1;
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ui-chrome[data-idle='true'] {
+  opacity: 0;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up {
     animation: none;
+  }
+
+  .ui-chrome {
+    transition-duration: 0.2s;
   }
 }
