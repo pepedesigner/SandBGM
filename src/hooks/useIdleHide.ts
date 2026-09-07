@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 const EVENTS = ['pointermove', 'pointerdown', 'keydown', 'touchstart', 'wheel'] as const
 
-export function useIdleHide(delayMs = 10_000, paused = false) {
+export function useIdleHide(delayMs = 3_000, paused = false) {
   const [idle, setIdle] = useState(false)
 
   useEffect(() => {

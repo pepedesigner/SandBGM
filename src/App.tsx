@@ -13,7 +13,7 @@ export default function App() {
   const player = useLofiPlayer()
   const [libraryOpen, setLibraryOpen] = useState(false)
   const [bgIndex, setBgIndex] = useState(readBackgroundIndex)
-  const idle = useIdleHide(10_000, libraryOpen)
+  const idle = useIdleHide(3_000, libraryOpen)
 
   const shiftBackground = useCallback((delta: number) => {
     setBgIndex((current) => {
