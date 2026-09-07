@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
-const SRC =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260611_183632_c311af08-e4b7-458f-81e7-79847a49b3d3.mp4'
 const MAX_WIDTH = 960
+const MAX_FRAMES = 150
 const FPS = 30
 
 function captureFrame(video: HTMLVideoElement) {
@@ -16,7 +15,7 @@ function captureFrame(video: HTMLVideoElement) {
   return canvas
 }
 
-export function BoomerangVideoBg() {
+export function BoomerangVideoBg({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const framesRef = useRef<HTMLCanvasElement[]>([])
@@ -31,7 +30,26 @@ export function BoomerangVideoBg() {
     let rafId = 0
     let stopped = false
 
+    const finish = () => {
+      if (stopped) return
+      stopped = true
+      if ('cancelVideoFrameCallback' in video && rvfcId) {
+        video.cancelVideoFrameCallback(rvfcId)
+      }
+      cancelAnimationFrame(rafId)
+      if (frames.length === 0) {
+        const last = captureFrame(video)
+        if (last) frames.push(last)
+      }
+      framesRef.current = frames
+      setMode('canvas')
+    }
+
     const grab = () => {
+      if (frames.length >= MAX_FRAMES) {
+        finish()
+        return
+      }
       const frame = captureFrame(video)
       if (frame) frames.push(frame)
     }
@@ -57,19 +75,7 @@ export function BoomerangVideoBg() {
       rafId = requestAnimationFrame(loop)
     }
 
-    const onEnded = () => {
-      stopped = true
-      if ('cancelVideoFrameCallback' in video && rvfcId) {
-        video.cancelVideoFrameCallback(rvfcId)
-      }
-      cancelAnimationFrame(rafId)
-      if (frames.length === 0) {
-        const last = captureFrame(video)
-        if (last) frames.push(last)
-      }
-      framesRef.current = frames
-      setMode('canvas')
-    }
+    const onEnded = () => finish()
 
     video.addEventListener('play', onPlay)
     video.addEventListener('ended', onEnded)
@@ -86,7 +92,7 @@ export function BoomerangVideoBg() {
       }
       cancelAnimationFrame(rafId)
     }
-  }, [])
+  }, [src])
 
   useEffect(() => {
     if (mode !== 'canvas') return
@@ -124,7 +130,7 @@ export function BoomerangVideoBg() {
       <video
         ref={videoRef}
         className={`h-full w-full object-cover ${mode === 'canvas' ? 'hidden' : ''}`}
-        src={SRC}
+        src={src}
         muted
         playsInline
         crossOrigin="anonymous"
