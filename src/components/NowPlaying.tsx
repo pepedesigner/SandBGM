@@ -72,7 +72,7 @@ export function NowPlaying({
             {live ? (
               <>
                 <span>{playing ? 'LIVE' : 'Radio'}</span>
-                <span>Lofi Girl</span>
+                <span>Free Music Archive</span>
               </>
             ) : (
               <>

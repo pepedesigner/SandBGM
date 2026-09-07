@@ -50,7 +50,7 @@ export function Library({
             <h2 id="library-title" className="text-lg tracking-wide text-white">
               Library
             </h2>
-            <p className="mt-0.5 text-xs text-white/60">{TRACKS.length} mixes · Lofi Girl</p>
+            <p className="mt-0.5 text-xs text-white/60">{TRACKS.length} tracks · Free Music Archive</p>
           </div>
           <button
             type="button"
@@ -65,9 +65,9 @@ export function Library({
         <ul className="min-h-0 flex-1 overflow-y-auto px-2 pb-3">
           {TRACKS.map((track, i) => {
             const active = i === currentIndex
-            const liked = likedIds.includes(track.videoId)
+            const liked = likedIds.includes(track.handle)
             return (
-              <li key={track.videoId}>
+              <li key={track.handle}>
                 <button
                   type="button"
                   onClick={() => onPlayAt(i)}
@@ -75,11 +75,12 @@ export function Library({
                     active ? 'bg-white/12' : 'hover:bg-white/8'
                   }`}
                 >
-                  <img
-                    src={`https://i.ytimg.com/vi/${track.videoId}/mqdefault.jpg`}
-                    alt=""
-                    className="h-10 w-16 shrink-0 rounded-lg object-cover"
-                  />
+                  <span
+                    aria-hidden="true"
+                    className="flex h-10 w-16 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white/40"
+                  >
+                    ♪
+                  </span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-sm text-white">{track.title}</span>
                     <span className="mt-0.5 block truncate text-xs text-white/55">{track.artist}</span>

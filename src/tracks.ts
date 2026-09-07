@@ -1,59 +1,75 @@
 export type Track = {
-  videoId: string
+  /** FMA stream path: https://freemusicarchive.org/track/{handle}/stream/ */
+  handle: string
   title: string
   artist: string
+  license: string
 }
 
-/** Official Lofi Girl mixes and radios on YouTube. */
+/** Lo-fi Hip-Hop & Instrumental tracks from Free Music Archive (CC licensed, no ads). */
 export const TRACKS: Track[] = [
   {
-    videoId: 'lTRiuFIWV54',
-    title: '1 A.M Study Session',
-    artist: 'Lofi Girl',
+    handle: 'sign-it-off',
+    title: 'Sign it Off',
+    artist: 'Ketsa',
+    license: 'CC BY-NC-ND',
   },
   {
-    videoId: 'wAPCSnAhhC8',
-    title: '2 A.M Study Session',
-    artist: 'Lofi Girl',
+    handle: 'if-tides-washed-us',
+    title: 'If Tides Washed Us',
+    artist: 'Ketsa',
+    license: 'CC BY-NC-ND',
   },
   {
-    videoId: 'TURbeWK2wwg',
-    title: '4 A.M Study Session',
-    artist: 'Lofi Girl',
+    handle: 'driving-soul',
+    title: 'Driving Soul',
+    artist: 'Ketsa',
+    license: 'CC BY-NC-ND',
   },
   {
-    videoId: '_tV5LEBDs7w',
-    title: 'Cozy Winter',
-    artist: 'Lofi Girl',
+    handle: 'a-rose-in-the-concrete',
+    title: 'A Rose in the Concrete',
+    artist: 'Ketsa',
+    license: 'CC BY-NC-ND',
   },
   {
-    videoId: 'gnZImHvA0ME',
-    title: 'Soothing Breeze',
-    artist: 'Lofi Girl',
+    handle: 'new-days-new-minutes',
+    title: 'New Days New Minutes',
+    artist: 'Ketsa',
+    license: 'CC BY-NC-ND',
   },
   {
-    videoId: 'deRDilpdOnE',
-    title: 'Summer in Rio',
-    artist: 'Lofi Girl',
+    handle: 'time-falls-like-autumn-leaves',
+    title: 'Time falls like Autumn Leaves',
+    artist: 'Ketsa',
+    license: 'CC BY-NC-ND',
   },
   {
-    videoId: 'cYPJaHT5f3E',
-    title: 'Peaceful Day',
-    artist: 'Lofi Girl',
+    handle: 'old-school-swag',
+    title: 'Old School Swag',
+    artist: 'Pumpupthemind',
+    license: 'CC BY',
   },
   {
-    videoId: 'n61ULEU7CO0',
-    title: 'Best of lofi hip hop 2021',
-    artist: 'Lofi Girl',
+    handle: 'old-vinyls',
+    title: 'Old Vinyls',
+    artist: 'Pumpupthemind',
+    license: 'CC BY',
   },
   {
-    videoId: '1P5BSm_oFJg',
-    title: 'Snowman',
-    artist: 'Lofi Girl',
+    handle: 'alone-in-silence',
+    title: 'Alone in Silence',
+    artist: 'Joint C Beat Laboratory',
+    license: 'CC BY',
   },
   {
-    videoId: 'rFZHOHl-L8A',
-    title: 'lofi hip hop radio',
-    artist: 'Lofi Girl',
+    handle: 'fly-away-3',
+    title: 'Fly Away',
+    artist: 'Joint C Beat Laboratory',
+    license: 'CC BY',
   },
 ]
+
+export function trackSrc(handle: string): string {
+  return `https://freemusicarchive.org/track/${handle}/stream/`
+}

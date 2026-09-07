@@ -4,7 +4,7 @@ Background music for a quieter desk.
 
 **Live:** [https://pepedesigner.github.io/SandBGM/](https://pepedesigner.github.io/SandBGM/)
 
-A one-page listening space built around official [Lofi Girl](https://www.youtube.com/@LofiGirl) mixes. Full-screen moss-and-vinyl loop, liquid-glass controls, press play and leave it on.
+A one-page listening space built around CC-licensed Lo-fi tracks from [Free Music Archive](https://freemusicarchive.org/). Full-screen moss-and-vinyl loop, liquid-glass controls, press play and leave it on. **No ads.**
 
 ## Preview
 
@@ -13,15 +13,15 @@ A one-page listening space built around official [Lofi Girl](https://www.youtube
 ## Features
 
 - Full-screen boomerang video background
-- Official Lofi Girl study sessions and radios from YouTube
+- CC-licensed Lo-fi Hip-Hop & Instrumental tracks — no ads, no interruptions
 - Play, pause, previous / next, and a seekable progress bar
-- **Surprise me** — jump to a random mix
-- **Browse Library** — pick any mix from the catalog
+- **Surprise me** — jump to a random track
+- **Browse Library** — pick any track from the catalog
 - Newsreader serif type and liquid-glass buttons
 
 ## Stack
 
-React · TypeScript · Vite · Tailwind CSS · YouTube IFrame API
+React · TypeScript · Vite · Tailwind CSS · HTML5 Audio
 
 ## Run locally
 
@@ -39,4 +39,4 @@ npm run preview
 
 ## Music
 
-Audio comes from Lofi Girl’s public YouTube mixes and radios, played through the YouTube embed. Rights remain with the original artists and [Lofi Girl](https://lofigirl.com).
+Audio streams from [Free Music Archive](https://freemusicarchive.org/) under Creative Commons licenses (CC BY / CC BY-NC-ND). Artists include Ketsa, Pumpupthemind, and Joint C Beat Laboratory. Rights remain with the original artists — see each track page on FMA for full license details.
