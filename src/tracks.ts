@@ -6,66 +6,66 @@ export type Track = {
   license: string
 }
 
-/** Lo-fi Hip-Hop & Instrumental tracks from Free Music Archive (CC licensed, no ads). */
+/** Lofi Beats tracks from Free Music Archive (CC licensed, no ads). */
 export const TRACKS: Track[] = [
   {
-    handle: 'sign-it-off',
-    title: 'Sign it Off',
+    handle: 'lofi-chill-hop-20-min-mix',
+    title: 'Lofi Chill Hop — 20 min Mix',
     artist: 'Ketsa',
     license: 'CC BY-NC-ND',
   },
   {
-    handle: 'if-tides-washed-us',
-    title: 'If Tides Washed Us',
+    handle: 'lofi-hip-hop-mix-2',
+    title: 'Lofi Hip-Hop Mix 2',
     artist: 'Ketsa',
     license: 'CC BY-NC-ND',
   },
   {
-    handle: 'driving-soul',
-    title: 'Driving Soul',
+    handle: 'lofi-soul-hip-hop-mix-3',
+    title: 'Lofi Soul Hip-Hop Mix 3',
     artist: 'Ketsa',
     license: 'CC BY-NC-ND',
   },
   {
-    handle: 'a-rose-in-the-concrete',
-    title: 'A Rose in the Concrete',
+    handle: 'lofi-hip-hop-mix-4',
+    title: 'Lofi Hip-Hop Mix 4',
     artist: 'Ketsa',
     license: 'CC BY-NC-ND',
   },
   {
-    handle: 'new-days-new-minutes',
-    title: 'New Days New Minutes',
-    artist: 'Ketsa',
-    license: 'CC BY-NC-ND',
-  },
-  {
-    handle: 'time-falls-like-autumn-leaves',
-    title: 'Time falls like Autumn Leaves',
-    artist: 'Ketsa',
-    license: 'CC BY-NC-ND',
-  },
-  {
-    handle: 'old-school-swag',
-    title: 'Old School Swag',
-    artist: 'Pumpupthemind',
+    handle: 'coffee-shop-vinyl-hip-hop',
+    title: 'Coffee Shop Vinyl Hip-Hop',
+    artist: 'BlackTrendMusic',
     license: 'CC BY',
   },
   {
-    handle: 'old-vinyls',
-    title: 'Old Vinyls',
-    artist: 'Pumpupthemind',
+    handle: 'chill-hip-hop-1',
+    title: 'Chill Hip-Hop',
+    artist: 'BlackTrendMusic',
     license: 'CC BY',
   },
   {
-    handle: 'alone-in-silence',
-    title: 'Alone in Silence',
-    artist: 'Joint C Beat Laboratory',
+    handle: 'abstract-chill',
+    title: 'Abstract Chill',
+    artist: 'BlackTrendMusic',
     license: 'CC BY',
   },
   {
-    handle: 'fly-away-3',
-    title: 'Fly Away',
-    artist: 'Joint C Beat Laboratory',
+    handle: 'lofi-and-coffee',
+    title: 'Lofi and Coffee',
+    artist: 'Brentin Davis',
+    license: 'CC BY',
+  },
+  {
+    handle: 'lofi-late-night',
+    title: 'Lofi Late Night',
+    artist: 'Brentin Davis',
+    license: 'CC BY',
+  },
+  {
+    handle: 'jazzy-lofi-beat-in-dmmp3',
+    title: 'Jazzy Lofi Beat in Dm',
+    artist: 'ImprovizBackingTrack',
     license: 'CC BY',
   },
 ]
