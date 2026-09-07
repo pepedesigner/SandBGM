@@ -1,9 +1,8 @@
 type HeroProps = {
   onBrowse: () => void
-  onSurprise: () => void
 }
 
-export function Hero({ onBrowse, onSurprise }: HeroProps) {
+export function Hero({ onBrowse }: HeroProps) {
   return (
     <div className="relative z-10 flex h-full flex-col items-center px-4 pt-20 text-center sm:px-6 sm:pt-28 md:pt-32">
       <div
@@ -32,13 +31,12 @@ export function Hero({ onBrowse, onSurprise }: HeroProps) {
         >
           Browse Library
         </button>
-        <button
-          type="button"
-          onClick={onSurprise}
-          className="liquid-glass rounded-xl px-7 py-2.5 text-sm text-white transition-transform duration-200 hover:scale-105 active:scale-95"
+        <a
+          href="https://pepedesigner.github.io/BGM-Generator/"
+          className="liquid-glass rounded-xl px-7 py-2.5 text-sm text-white transition-transform duration-200 hover:scale-105 active:scale-95 inline-flex items-center justify-center"
         >
-          Surprise me
-        </button>
+          Generate BGM
+        </a>
       </div>
     </div>
   )

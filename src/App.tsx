@@ -30,7 +30,7 @@ export default function App() {
       <BoomerangVideoBg key={BACKGROUNDS[bgIndex]} src={BACKGROUNDS[bgIndex]!} />
       <div className="ui-chrome" data-idle={idle ? 'true' : 'false'}>
         <Header />
-        <Hero onBrowse={() => setLibraryOpen(true)} onSurprise={player.surprise} />
+        <Hero onBrowse={() => setLibraryOpen(true)} />
         {!libraryOpen ? (
           <BackgroundSwitch onPrev={() => shiftBackground(-1)} onNext={() => shiftBackground(1)} />
         ) : null}

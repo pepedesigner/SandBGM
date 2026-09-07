@@ -15,7 +15,7 @@ A one-page listening space built around CC-licensed Lo-fi tracks from [Free Musi
 - Full-screen boomerang video background
 - CC-licensed Lo-fi Hip-Hop & Instrumental tracks — no ads, no interruptions
 - Play, pause, previous / next, and a seekable progress bar
-- **Surprise me** — jump to a random track
+- **Generate BGM** — jump to BGM Generator
 - **Browse Library** — pick any track from the catalog
 - Newsreader serif type and liquid-glass buttons
 
@@ -30,7 +30,7 @@ npm install
 npm run dev
 ```
 
-Open the local URL Vite prints. Browsers block unmuted autoplay, so the first sound needs a click on the player or **Surprise me**.
+Open the local URL Vite prints. Browsers block unmuted autoplay, so the first sound needs a click on the player.
 
 ```bash
 npm run build
