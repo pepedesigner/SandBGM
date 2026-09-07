@@ -48,11 +48,25 @@ export function useLofiPlayer(): LofiPlayer {
 
   useEffect(() => {
     const audio = new Audio()
-    audio.crossOrigin = 'anonymous'
-    audio.preload = 'metadata'
+    // Do NOT set crossOrigin: FMA /stream/ uses a 302 redirect chain where
+    // the first hop lacks CORS headers — the browser would abort the load.
+    // We don't use Web Audio API, so crossOrigin is not needed.
+    audio.preload = 'auto'
     audioRef.current = audio
 
-    const onCanPlay = () => setReady(true)
+    let autoplayAttempted = false
+    const tryAutoplay = () => {
+      if (autoplayAttempted) return
+      autoplayAttempted = true
+      void audio.play().catch(() => {
+        /* autoplay blocked — user gesture needed, handled by UI */
+      })
+    }
+
+    const onCanPlay = () => {
+      setReady(true)
+      tryAutoplay()
+    }
     const onTimeUpdate = () => setCurrent(audio.currentTime)
     const onDurationChange = () => {
       if (Number.isFinite(audio.duration)) setDuration(audio.duration)
@@ -77,12 +91,6 @@ export function useLofiPlayer(): LofiPlayer {
     audio.addEventListener('ended', onEnded)
 
     audio.src = trackSrc(TRACKS[0].handle)
-    audio.load()
-
-    // Attempt autoplay; browsers may block it until a user gesture
-    void audio.play().catch(() => {
-      /* autoplay blocked — user gesture needed, handled by UI */
-    })
 
     return () => {
       audio.removeEventListener('canplay', onCanPlay)
@@ -117,6 +125,8 @@ export function useLofiPlayer(): LofiPlayer {
     const audio = audioRef.current
     if (!audio) return
     audio.src = trackSrc(TRACKS[next].handle)
+    // load() resets the element for the new src before play()
+    audio.load()
     void audio.play()
   }, [])
 
